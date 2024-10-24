@@ -1,38 +1,33 @@
-# Streamlitライブラリをインポート
-import streamlit as st
-import random
-# ページ設定（タブに表示されるタイトル、表示幅）
-st.set_page_config(page_title="タイトル", layout="wide")
+timetable = [
+    "18:20 豊後竹田行",
+    "18:44 中判田行",
+    "19:05 豊後竹田行",
+    "19:26 三重町行",
+    "19:49 豊後竹田行",
+    "20:10 中判田行",
+    "20:35 豊後竹田行",
+    "21:09 犬飼行",
+    "21:33 豊後竹田行",
+    "22:13 豊後竹田行",
+    "22:50 豊後竹田行",
+    "23:30 三重町行"
+]
 
-# タイトルを設定
-st.title('帰宅電車決定アプリ')
+# アプリケーションのタイトル
+st.title("ランダム時刻抽出アプリ")
 
-# テキスト入力ボックスを作成し、ユーザーからの入力を受け取る
-user_input = st.text_input('あなたの名前を入力してください')
+# 説明文
+st.write("このアプリは、提供された時刻表からランダムに時刻を抽出します。")
 
-# ボタンを作成し、クリックされたらメッセージを表示
-if st.button('挨拶する'):
-    if user_input:  # 名前が入力されているかチェック
-        st.success(f'🌟 こんにちは、{user_input}さん! 🌟')  # メッセージをハイライト
-    else:
-        st.error('名前を入力してください。')  # エラーメッセージを表示
+# ボタンを作成
+if st.button("ランダムな時刻を抽出"):
+    # ランダムに時刻を選択
+    random_time = random.choice(timetable)
+    
+    # 結果を表示
+    st.success(f"抽出された時刻: {random_time}")
 
-# スライダーを作成し、値を選択
-number = st.slider('好きな数字（10進数）を選んでください', 0, 100)
-
-# 補足メッセージ
-st.caption("十字キー（左右）でも調整できます。")
-
-# 選択した数字を表示
-st.write(f'あなたが選んだ数字は「{number}」です。')
-
-# 選択した数値を2進数に変換
-binary_representation = bin(number)[2:]  # 'bin'関数で2進数に変換し、先頭の'0b'を取り除く
-st.info(f'🔢 10進数の「{number}」を2進数で表現すると「{binary_representation}」になります。 🔢')  # 2進数の表示をハイライト
-
-
-#帰宅電車ボタンを配置
-if st.button('乱数を設定'):
-    #最小値と最大値の間で乱数を生成
-    rundom_num = random.randit(min_val,max_val)
-    st.write(f'生成された乱数:{random_num}')
+# 全ての時刻を表示
+st.subheader("時刻表")
+for time in timetable:
+    st.write(time)
