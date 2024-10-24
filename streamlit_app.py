@@ -1,3 +1,5 @@
+import streamlit as st
+
 timetable = [
     "18:20 豊後竹田行",
     "18:44 中判田行",
